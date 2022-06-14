@@ -1,0 +1,101 @@
+
+
+// tabulation method 
+
+/*
+class Solution{
+    public:
+
+int longestCommonSubstr (string s1, string s2, int n, int m){
+    
+     
+     vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
+
+
+ for(int i=0;i<=n;i++)dp[i][0]=0;
+ for(int j=0;j<=m;j++)dp[0][j]=0;
+ 
+ int ans=0;
+
+for(int i=1;i<=n;i++){
+    for(int j=1;j<=m;j++){
+        
+       if(s1[i-1]==s2[j-1]){
+          dp[i][j]=1+dp[i-1][j-1];
+          if(dp[i][j] > ans)ans=dp[i][j];
+       }
+       
+       else dp[i][j]=0;
+        
+    }
+}  
+   
+ return ans;
+   
+    }
+};
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+//memoization
+
+/*
+class Solution{
+    public:
+
+int ans=0;
+int solve(vector<vector<int>>&dp ,string s1,string s2 ,int i1, int i2)    //our function return value of (n,m) state
+{                        // so that we can use the result in (n+1,m+1) state
+  if(i1 == 0 || i2 == 0) return 0;   //in case of match in (n+1,m+1) state
+  if(dp[i1][i2] != -1) return dp[i1][i2];
+
+
+ solve(dp,s1,s2,i1-1,i2);          //to visit all n*m states          (try example:  X:ASDF
+ solve(dp,s1,s2,i1,i2-1);          // we call these states first                     Y:ASDFF)
+
+
+// take both case
+  if(s1[i1-1] == s2[i2-1]){
+
+    dp[i1][i2] =  solve(dp,s1,s2,i1-1,i2-1) + 1;
+    ans = max(ans, dp[i1][i2]);
+    return dp[i1][i2];
+  }
+  
+  
+  //otherwise
+    return dp[i1][i2] = 0;
+    
+}
+
+
+
+
+
+int longestCommonSubstr (string s1, string s2, int n, int m){
+     vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
+
+      solve(dp,s1,s2,n,m);
+     return ans;
+     
+   
+    }
+};
+
+
+*/
+
+
+
